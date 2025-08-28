@@ -6,22 +6,22 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800 dark:bg-gray-900 text-white px-4 py-3">
+    <nav className="bg-slate-700 text-white px-6 py-3">
       <div className="flex justify-between items-center">
         {/* Logo / Title */}
-        <h1 className="text-xl font-bold">My Portfolio</h1>
+        <h1 className="text-xl font-bold text-sky-400">My Portfolio</h1>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-4 items-center">
-          <Link to="/" className="hover:underline">Home</Link>
-          <Link to="/about" className="hover:underline">About</Link>
-          <Link to="/projects" className="hover:underline">Projects</Link>
-          <Link to="/contact" className="hover:underline">Contact</Link>
+        <div className="hidden md:flex space-x-6 items-center">
+          <Link to="/" className="hover:text-sky-400 transition">Home</Link>
+          <Link to="/about" className="hover:text-sky-400 transition">About</Link>
+          <Link to="/projects" className="hover:text-sky-400 transition">Projects</Link>
+          <Link to="/contact" className="hover:text-sky-400 transition">Contact</Link>
           <a
             href="https://myblogsite.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition"
+            className="bg-sky-400 hover:bg-sky-500 text-white px-4 py-2 rounded-md transition"
           >
             Blog
           </a>
@@ -58,18 +58,18 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="mt-2 flex flex-col space-y-2 md:hidden">
-          <Link to="/" className="hover:underline">Home</Link>
-          <Link to="/about" className="hover:underline">About</Link>
-          <Link to="/projects" className="hover:underline">Projects</Link>
-          <Link to="/contact" className="hover:underline">Contact</Link>
+        <div className="mt-3 flex flex-col space-y-2 md:hidden bg-slate-600 rounded-md p-3">
+          <Link to="/" className="hover:text-sky-400 transition">Home</Link>
+          <Link to="/about" className="hover:text-sky-400 transition">About</Link>
+          <Link to="/projects" className="hover:text-sky-400 transition">Projects</Link>
+          <Link to="/contact" className="hover:text-sky-400 transition">Contact</Link>
           <a
             href="https://myblogsite.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md transition"
+            className="bg-sky-400 hover:bg-sky-500 text-white px-4 py-2 rounded-md transition"
           >
             Blog
           </a>

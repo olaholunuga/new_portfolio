@@ -1,0 +1,23 @@
+[
+  {
+    "title": "AI Chatbot Portfolio",
+    "description": "A personal portfolio integrated with an AI-powered assistant for client interaction, built with Flask and React.",
+    "tech": ["React", "TypeScript", "Flask", "Tailwind CSS"],
+    "image": "/projects/ai-chat.png",
+    "link": "https://github.com/yourusername/ai-chatbot-portfolio"
+  },
+  {
+    "title": "E-Commerce Dashboard",
+    "description": "A full-stack admin dashboard for managing products, orders, and analytics.",
+    "tech": ["Next.js", "Node.js", "MongoDB"],
+    "image": "/projects/ecommerce.png",
+    "link": "https://github.com/yourusername/ecommerce-dashboard"
+  },
+  {
+    "title": "Data Visualization Toolkit",
+    "description": "A Python + D3.js toolkit for generating interactive data visualizations for research projects.",
+    "tech": ["Python", "D3.js"],
+    "image": "/projects/dataviz.png",
+    "link": "https://github.com/yourusername/data-visualization-toolkit"
+  }
+]

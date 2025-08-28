@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Machine Learning by Andrew Ng",
+    "provider": "Stanford University",
+    "year": "2020",
+    "certificateUrl": "https://coursera.org/certificate/example-ml"
+  },
+  {
+    "title": "Deep Learning Specialization",
+    "provider": "deeplearning.ai",
+    "year": "2021",
+    "certificateUrl": "https://coursera.org/certificate/example-dl"
+  },
+  {
+    "title": "Python for Everybody",
+    "provider": "University of Michigan",
+    "year": "2021",
+    "certificateUrl": "https://coursera.org/certificate/example-py"
+  },
+  {
+    "title": "AI for Everyone",
+    "provider": "deeplearning.ai",
+    "year": "2022",
+    "certificateUrl": "https://coursera.org/certificate/example-ai"
+  }
+]

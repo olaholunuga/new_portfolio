@@ -1,0 +1,7 @@
+[
+  { "name": "React", "icon": "/icons/react.svg" },
+  { "name": "TypeScript", "icon": "/icons/typescript.svg" },
+  { "name": "Flask", "icon": "/icons/flask.svg" },
+  { "name": "Python", "icon": "/icons/python.svg" },
+  { "name": "TailwindCSS", "icon": "/icons/tailwind.svg" }
+]
