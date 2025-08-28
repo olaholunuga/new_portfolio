@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false)
-    return (
-        <nav className="bg-gray-800 dark:bg-gray-900 text-white px-4 py-3">
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="bg-gray-800 dark:bg-gray-900 text-white px-4 py-3">
       <div className="flex justify-between items-center">
         {/* Logo / Title */}
         <h1 className="text-xl font-bold">My Portfolio</h1>
@@ -76,5 +77,5 @@ export default function Navbar() {
         </div>
       )}
     </nav>
-    );
+  );
 }
