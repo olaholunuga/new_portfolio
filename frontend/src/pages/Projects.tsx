@@ -1,166 +1,134 @@
+// src/pages/Projects.tsx
+import { motion } from "framer-motion";
 import { useState } from "react";
-import axios from "axios";
-import projects from "../data/projects.json";
+import projects from "../data/projects.json"; // 👈 import JSON data
+
+// Variants for staggered entrance
+const gridVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } }
+};
 
 export default function Projects() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    requirements: ""
-  });
-  const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [messages, setMessages] = useState([
+    { sender: "assistant", text: "Hi! Want me to draft a proposal for your project?" }
+  ]);
+  const [input, setInput] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleSend = () => {
+    if (!input.trim()) return;
+    setMessages([...messages, { sender: "user", text: input }]);
+    setInput("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    // Add user's message
-    const newMessages = [...messages, { role: "user", content: formData.requirements }];
-    setMessages(newMessages);
-
-    try {
-      const response = await axios.post("http://localhost:5000/api/generate-proposal", formData);
-      const proposal = response.data.proposal;
-
-      setMessages([...newMessages, { role: "assistant", content: proposal }]);
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    // Simulate assistant reply (later replace with Flask fetch)
+    setTimeout(() => {
+      setMessages(prev => [
+        ...prev,
+        { sender: "assistant", text: "Thanks! I’ll prepare a draft proposal for you." }
+      ]);
+    }, 800);
   };
 
   return (
-    <section className="px-6 md:px-12 lg:px-24 py-16 bg-stone-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <div className="space-y-16 py-16">
+      {/* PROJECT GRID */}
+      <section>
+        <h1 className="text-3xl font-bold text-center mb-12">My Projects</h1>
 
-        {/* Page Title */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-extrabold text-slate-800 dark:text-slate-100">
-            My Projects
-          </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            A selection of my work — blending creativity, problem-solving, and
-            clean code.
-          </p>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          className="grid gap-8 md:grid-cols-3"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={gridVariants}
+        >
           {projects.map((project, idx) => (
-            <div
+            <motion.article
               key={idx}
-              className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition bg-white dark:bg-slate-800"
+              className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md bg-white dark:bg-slate-800 transition"
+              variants={cardVariants}
+              whileHover={{ y: -6, boxShadow: "0 12px 28px rgba(2, 6, 23, 0.15)" }}
             >
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-40 object-cover"
               />
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-semibold">{project.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400">
+              <div className="p-6 space-y-3">
+                <h2 className="text-xl font-semibold">{project.title}</h2>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
                   {project.description}
                 </p>
+
+                {/* Tech stack tags */}
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t, i) => (
+                  {project.techStack.map((tech, tIdx) => (
                     <span
-                      key={i}
-                      className="px-2 py-1 text-xs font-medium bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300 rounded-full"
+                      key={tIdx}
+                      className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-md"
                     >
-                      {t}
+                      {tech}
                     </span>
                   ))}
                 </div>
+
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-2 text-sky-400 hover:underline font-medium"
+                  className="inline-block text-sky-500 hover:underline font-medium"
                 >
-                  View Project →
+                  View →
                 </a>
               </div>
-            </div>
+            </motion.article>
+          ))}
+
+        </motion.div>
+      </section>
+
+      {/* WORK WITH ME CHAT SECTION */}
+      <section className="max-w-2xl mx-auto space-y-6">
+        <h2 className="text-2xl font-bold text-center">Work With Me</h2>
+        <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4 bg-white dark:bg-slate-800 space-y-3 h-80 overflow-y-auto">
+          {messages.map((msg, idx) => (
+            <motion.div
+              key={idx}
+              className={`p-3 rounded-lg max-w-xs ${msg.sender === "user"
+                  ? "bg-sky-500 text-white self-end ml-auto"
+                  : "bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100"
+                }`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {msg.text}
+            </motion.div>
           ))}
         </div>
 
-        {/* Proposal Generator */}
-        <div className="mt-16 p-8 rounded-xl bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700">
-          <h2 className="text-2xl font-bold mb-6 text-slate-700 dark:text-slate-200">
-            Work with Me
-          </h2>
-          <p className="mb-6 text-slate-600 dark:text-slate-400">
-            Tell me about your project, and I’ll generate a tailored proposal. 
-            You’ll see the response instantly, and I’ll also receive it via email.
-          </p>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-transparent"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-transparent"
-            />
-            <textarea
-              name="requirements"
-              placeholder="Tell me about your project..."
-              value={formData.requirements}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-transparent"
-            />
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-lg shadow-md transition disabled:opacity-50"
-            >
-              {loading ? "Generating Proposal..." : "Generate Proposal"}
-            </button>
-          </form>
-
-          {/* Error */}
-          {error && <p className="mt-4 text-red-500">{error}</p>}
-
-          {/* Chat Messages */}
-          <div className="mt-8 space-y-4">
-            {messages.map((msg, i) => (
-              <div
-                key={i}
-                className={`max-w-lg p-4 rounded-lg ${
-                  msg.role === "user"
-                    ? "ml-auto bg-sky-500 text-white"
-                    : "mr-auto bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100"
-                }`}
-              >
-                {msg.content}
-              </div>
-            ))}
-          </div>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && handleSend()}
+            placeholder="Type your message..."
+            className="flex-1 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus-visible:ring-2 focus-visible:ring-sky-400"
+          />
+          <button
+            onClick={handleSend}
+            className="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-medium rounded-lg transition"
+          >
+            Send
+          </button>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
