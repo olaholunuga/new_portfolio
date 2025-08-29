@@ -1,138 +1,171 @@
+// src/pages/Contact.tsx
 import { useState } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
-import { Mail, Github, Linkedin } from "lucide-react"; // icons
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
   });
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setStatus(null);
-
+    setStatus("loading");
     try {
-      await axios.post("http://localhost:5000/api/contact", formData);
+      await axios.post("http://localhost:5000/api/contact", form);
       setStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch {
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
       setStatus("error");
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <section className="px-6 md:px-12 lg:px-24 py-16 bg-stone-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100">
-      <div className="max-w-4xl mx-auto space-y-16">
-
-        {/* Heading */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-extrabold text-slate-800 dark:text-slate-100">
-            Contact Me
-          </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            Let’s connect! You can reach me via this form or through my social links below.
-          </p>
-        </div>
-
-        {/* Contact Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 p-6 rounded-xl bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="py-16 space-y-16">
+      {/* Contact Form */}
+      <motion.section
+        className="max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <h1 className="text-3xl font-bold text-center mb-8">Get in Touch</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-slate-700"
+        >
+          {/* Name */}
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
+              Name
+            </label>
             <input
-              type="text"
+              id="name"
               name="name"
-              placeholder="Your Name"
-              value={formData.name}
+              type="text"
+              value={form.name}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-transparent"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-transparent"
+              className="w-full border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-400"
             />
           </div>
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            value={formData.subject}
-            onChange={handleChange}
-            required
-            className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-transparent"
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={6}
-            className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-transparent"
-          />
 
-          <button
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="w-full border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-400"
+            />
+          </div>
+
+          {/* Subject */}
+          <div>
+            <label htmlFor="subject" className="block text-sm font-medium mb-1">
+              Subject
+            </label>
+            <input
+              id="subject"
+              name="subject"
+              type="text"
+              value={form.subject}
+              onChange={handleChange}
+              required
+              className="w-full border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-400"
+            />
+          </div>
+
+          {/* Message */}
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium mb-1">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={5}
+              value={form.message}
+              onChange={handleChange}
+              required
+              className="w-full border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-400"
+            ></textarea>
+          </div>
+
+          {/* Submit */}
+          <motion.button
             type="submit"
-            disabled={loading}
-            className="px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-lg shadow-md transition disabled:opacity-50"
+            disabled={status === "loading"}
+            className="px-6 py-3 bg-sky-500 hover:bg-sky-600 disabled:bg-slate-400 text-white font-semibold rounded-lg shadow-md transition focus-visible:ring-4 focus-visible:ring-sky-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
           >
-            {loading ? "Sending..." : "Send Message"}
-          </button>
+            {status === "loading"
+              ? "Sending..."
+              : status === "success"
+              ? "Message Sent!"
+              : "Send Message"}
+          </motion.button>
 
           {/* Feedback */}
-          {status === "success" && (
-            <p className="mt-4 text-green-600">Message sent successfully!</p>
-          )}
           {status === "error" && (
-            <p className="mt-4 text-red-500">Something went wrong. Please try again.</p>
+            <p className="text-red-500 text-sm mt-2">
+              Something went wrong. Please try again.
+            </p>
           )}
         </form>
+      </motion.section>
 
-        {/* Direct Contact Links */}
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold">Other Ways to Reach Me</h2>
-          <div className="flex justify-center gap-6 mt-4">
-            <a href="mailto:your@email.com" className="flex items-center gap-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">
-              <Mail className="w-5 h-5" /> Email
-            </a>
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
-               className="flex items-center gap-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">
-              <Github className="w-5 h-5" /> GitHub
-            </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer"
-               className="flex items-center gap-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">
-              <Linkedin className="w-5 h-5" /> LinkedIn
-            </a>
-          </div>
-        </div>
-
-        {/* Resume Download */}
-        <div className="text-center">
+      {/* Direct Contact + Resume */}
+      <motion.section
+        className="max-w-2xl mx-auto text-center space-y-4"
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+      >
+        <h2 className="text-2xl font-bold">Other Ways to Reach Me</h2>
+        <p>
+          Connect with me on{" "}
           <a
-            href="/Resume.pdf"
-            download
-            className="inline-block px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg shadow-md transition"
+            href="https://github.com/yourusername"
+            className="text-sky-500 hover:underline"
           >
-            Download Resume
+            GitHub
+          </a>{" "}
+          or via{" "}
+          <a
+            href="https://linkedin.com/in/yourusername"
+            className="text-sky-500 hover:underline"
+          >
+            LinkedIn
           </a>
-        </div>
-      </div>
-    </section>
+          .
+        </p>
+        <a
+          href="/resume.pdf"
+          download
+          className="inline-block px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-lg hover:bg-sky-500 hover:text-white transition"
+        >
+          Download My Resume
+        </a>
+      </motion.section>
+    </div>
   );
 }
