@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Getting Started with AI Agents",
+    "excerpt": "Learn how I experimented with AI-powered assistants for my projects...",
+    "image": "/images/blog1.jpg",
+    "link": "https://yourblog.com/post1"
+  },
+  {
+    "title": "Why I Love TypeScript",
+    "excerpt": "Here’s why TypeScript has improved my productivity and code quality...",
+    "image": "/images/blog2.jpg",
+    "link": "https://yourblog.com/post2"
+  },
+  {
+    "title": "Flask vs FastAPI",
+    "excerpt": "My thoughts on when to use Flask vs FastAPI for backend projects...",
+    "image": "/images/blog3.jpg",
+    "link": "https://yourblog.com/post3"
+  }
+]
