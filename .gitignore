@@ -49,3 +49,4 @@ venv/
 flask-app*
 __pycache__/
 .env
+backend/.env
