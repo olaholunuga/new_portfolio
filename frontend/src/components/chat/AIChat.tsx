@@ -36,7 +36,7 @@ export default function AIChat() {
                 title: string;
                 budget: string;
                 timeline: string;
-                rquirements: string;
+                requirements: string;
                 comments?: string;
                 proposal: string;
             }>;
