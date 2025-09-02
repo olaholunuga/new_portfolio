@@ -73,7 +73,7 @@ export default function AIChat() {
         try {
             // General chat on all pages → /api/chat
             const res = await api.post("/api/chat", { message: userMsg });
-            const reply = res?.data?.reply || "I’m not sure I understood that, could you rephrase?";
+            const reply = res?.data?.message || "I’m not sure I understood that, could you rephrase?";
             setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
         } catch (err) {
             setMessages((prev) => [

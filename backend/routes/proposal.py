@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from datetime import datetime
 import json
 from agents import TechnicalAgent
@@ -10,6 +10,8 @@ def generate_proposal():
     data = request.get_json()
     requirements = data.get("requirements")
     visitor_info = data.get("visitor_info", {})
+    if not visitor_info:
+        visitor_info = session.get("visitor_type", "client or employer")
 
     if not requirements:
         return jsonify({"error": "Requirements are required"}), 400

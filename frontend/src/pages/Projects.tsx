@@ -43,7 +43,7 @@ export default function Projects() {
       //  - generates proposal
       //  - emails HTML-formatted content (all details + proposal) via Resend
       //  - returns { proposalText: string }
-      const res = await api.post("/api/generate-proposal", {
+      const res = await api.post("/api/generate_proposal", {
         name: form.name,
         email: form.email,
         projectTitle: form.title,
@@ -53,7 +53,7 @@ export default function Projects() {
         comments: form.comments,
       });
 
-      const proposalText = res?.data?.proposalText || "No proposal text returned.";
+      const proposalText = res?.data?.proposal || "No proposal text returned.";
       setProposal(proposalText);
       setStatus("success");
 
