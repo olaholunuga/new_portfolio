@@ -17,7 +17,7 @@ def send_contact():
 
         # Send to you (owner)
         send_email(
-            to="your-email@example.com",
+            to="olaholunuga@gmail.com",
             subject=f"New Contact Message from {name}",
             template_name="email_contact_owner.html",
             context={

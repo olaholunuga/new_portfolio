@@ -22,7 +22,7 @@ def send_email(to: str, subject: str, template_name: str, context: dict, text_bo
     html_body = render_template(template_name, **context)
 
     resend.Emails.send({
-        "from": "Portfolio <your@domain.com>",  # replace with your domain
+        "from": "Portfolio <me@olaoluwaolunuga.com>",  # replace with your domain
         "to": to,
         "subject": subject,
         "html": html_body,
