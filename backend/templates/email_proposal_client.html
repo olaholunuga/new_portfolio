@@ -1,0 +1,15 @@
+{% extends "email_base.html" %}
+{% block content %}
+<h3>Thank you for your project submission!</h3>
+<p>We’ve received your project request. Here’s a summary:</p>
+
+<p><strong>Project Title:</strong> {{ title }}</p>
+<p><strong>Budget:</strong> {{ budget }}</p>
+<p><strong>Timeline:</strong> {{ timeline }}</p>
+<p><strong>Requirements:</strong> {{ requirements }}</p>
+
+<h4>AI Generated Proposal</h4>
+<p>{{ proposal }}</p>
+
+<p>I’ll reach out soon with next steps.</p>
+{% endblock %}

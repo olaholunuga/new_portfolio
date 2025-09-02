@@ -1,0 +1,13 @@
+{% extends "email_base.html" %}
+{% block content %}
+<h3>New Project Proposal Request</h3>
+<p><strong>Name:</strong> {{ name }}</p>
+<p><strong>Email:</strong> {{ email }}</p>
+<p><strong>Project Title:</strong> {{ title }}</p>
+<p><strong>Budget:</strong> {{ budget }}</p>
+<p><strong>Timeline:</strong> {{ timeline }}</p>
+<p><strong>Requirements:</strong> {{ requirements }}</p>
+
+<h4>AI Generated Proposal</h4>
+<p>{{ proposal }}</p>
+{% endblock %}
