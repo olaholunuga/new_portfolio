@@ -1,8 +1,12 @@
 from flask import render_template
 import resend
 from datetime import datetime
+import logging
+from config import Config
 
-resend.api_key = "YOUR_RESEND_API_KEY"
+logger = logging.getLogger(__name__)
+
+resend.api_key = Config.RESEND_API_KEY
 
 def send_email(to: str, subject: str, template_name: str, context: dict, text_body: str = None):
     """
