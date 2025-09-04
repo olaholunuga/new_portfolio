@@ -27,7 +27,7 @@ def generate_proposal():
         if not (email and name and title and requirements):
             return jsonify({"Error": "Missing required fields"}), 400
         
-        technical_agent = technical_agent()
+        technical_agent = TechnicalAgent()
         proposal_prompt = f"""
         Generate a professional project proposal based on the requirements and other details:
         REQUIREMENTS: {requirements}
@@ -85,4 +85,5 @@ def generate_proposal():
             "generated_at": datetime.now().isoformat()
         }), 200
     except Exception as e:
+        logger.error(f"Backend Error: {str(e)}")
         return jsonify({"Error": str(e)}), 500

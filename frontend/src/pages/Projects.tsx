@@ -46,7 +46,7 @@ export default function Projects() {
       const res = await api.post("/api/generate_proposal", {
         name: form.name,
         email: form.email,
-        projectTitle: form.title,
+        title: form.title,
         budget: form.budget,
         timeline: form.timeline,
         requirements: form.requirements,
