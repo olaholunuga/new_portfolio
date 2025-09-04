@@ -3,6 +3,9 @@ from datetime import datetime
 import json
 from agents import TechnicalAgent
 from utils.email_handler import send_email
+import logging
+
+logger = logging.getLogger(__name__)
 
 proposal_bp = Blueprint("proposal", __name__)
 
@@ -19,7 +22,8 @@ def generate_proposal():
         title = data.get("title")
         if not visitor_info:
             visitor_info = session.get("visitor_type", "client or employer")
-
+        
+        logger.error(str(data))
         if not (email and name and title and requirements):
             return jsonify({"Error": "Missing required fields"}), 400
         

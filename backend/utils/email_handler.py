@@ -24,11 +24,13 @@ def send_email(to: str, subject: str, template_name: str, context: dict, text_bo
     context.setdefault("disclaimer", context.get("disclaimer", None))
 
     html_body = render_template(template_name, **context)
+    logger.error("reached here")
 
-    resend.Emails.send({
-        "from": "Portfolio <me@olaoluwaolunuga.com>",  # replace with your domain
-        "to": to,
+    emails = resend.Emails.send({
+        "from": "Acme <olaholunuga@gmail.com>",  # replace with your domain
+        "to": [to],
         "subject": subject,
         "html": html_body,
         "text": text_body or "Please view this email in an HTML-compatible client."
     })
+    logger.error(str(emails))

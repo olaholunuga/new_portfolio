@@ -1,6 +1,10 @@
 from flask import Blueprint, request, jsonify
 from utils.email_handler import send_email
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 contact_bp = Blueprint("contact", __name__)
 
 @contact_bp.route("/api/send-contact", methods=["POST"])
@@ -43,4 +47,5 @@ def send_contact():
         return jsonify({"status": "success"}), 200
 
     except Exception as e:
+        logger.error(str(e))
         return jsonify({"error": str(e)}), 500

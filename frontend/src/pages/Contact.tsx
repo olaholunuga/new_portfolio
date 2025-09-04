@@ -22,7 +22,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus("loading");
     try {
-      await axios.post("http://localhost:5000/api/contact", form);
+      await axios.post("http://localhost:5000/api/send-contact", form);
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch (err) {
@@ -144,14 +144,14 @@ export default function Contact() {
         <p>
           Connect with me on{" "}
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/olaholunuga"
             className="text-sky-500 hover:underline"
           >
             GitHub
           </a>{" "}
           or via{" "}
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/olaoluwa-olunuga"
             className="text-sky-500 hover:underline"
           >
             LinkedIn
