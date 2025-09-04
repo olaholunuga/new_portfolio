@@ -22,7 +22,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus("loading");
     try {
-      await axios.post("http://localhost:5000/api/send-contact", form);
+      await axios.post("https://newportfolio-production-53d4.up.railway.app/api/send-contact", form);
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch (err) {
