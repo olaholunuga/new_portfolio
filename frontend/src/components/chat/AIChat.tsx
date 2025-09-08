@@ -20,12 +20,18 @@ export default function AIChat() {
     const [sending, setSending] = useState(false);
     const reduce = useReducedMotion();
     const location = useLocation();
+    const CHAT_STORAGE_KEY = "ai_chat_messages_v1";
     const listRef = useRef<HTMLDivElement>(null);
 
     // Auto-scroll to latest message
     useEffect(() => {
         listRef.current?.scrollTo({top: listRef.current.scrollHeight, behavior: "smooth"});        
     }, [messages, open]);
+
+    // ✅ Changed: persist messages whenever they update
+    useEffect(() => {
+        localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages));
+    }, [messages]);
 
     // Listen for project proposal submissions from the projects form
     useEffect(() => {
@@ -63,6 +69,15 @@ export default function AIChat() {
         return () => window.removeEventListener("proposal:submitted", onProposalSubmitted as EventListener);
     }, []);
 
+    // ✅ Changed: agent mapping function
+    function getAgentFromPath(pathname: string | undefined) {
+        if (!pathname) return undefined;
+        if (pathname.startsWith("/projects")) return "technical";
+        if (pathname.startsWith("/about")) return "storyteller";
+        if (pathname === "/") return "router";
+        return undefined; // none on other pages
+    }
+
     async function sendMessage() {
         if (!input.trim()) return;
         const userMsg = input.trim();
@@ -71,8 +86,12 @@ export default function AIChat() {
         setSending(true);
 
         try {
+            const agent = getAgentFromPath(location.pathname);
+            const payload: any = { message: userMsg };
+            if (agent) payload.agent = agent;
+
             // General chat on all pages → /api/chat
-            const res = await api.post("/api/chat", { message: userMsg });
+            const res = await api.post("/api/chat", payload);
             const reply = res?.data?.message || "I’m not sure I understood that, could you rephrase?";
             setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
         } catch (err) {
