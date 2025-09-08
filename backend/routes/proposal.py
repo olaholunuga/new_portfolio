@@ -42,7 +42,7 @@ def generate_proposal():
         2. Technical Approach
         3. Recommended Tech Stack
         4. Timeline Estimate
-        5. Key Deliverable
+        5. Key Deliverables
         6. Next Steps
         """
 
@@ -50,7 +50,7 @@ def generate_proposal():
 
         # Email to me
         send_email(
-            to="olaholunga@gmail.com",
+            to="olasamlayi@gmail.com",
             subject=f"New Project Proposal Request from {name}",
             template_name="email_proposal_owner.html",
             context={
