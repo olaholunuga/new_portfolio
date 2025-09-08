@@ -20,6 +20,7 @@ def generate_proposal():
         budget = data.get("budget")
         visitor_info = data.get("visitor_info", {})
         title = data.get("title")
+        
         if not visitor_info:
             visitor_info = session.get("visitor_type", "client or employer")
         

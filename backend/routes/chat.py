@@ -14,9 +14,9 @@ agents: dict[RouterAgent | StorytellerAgent | TechnicalAgent] = {
 logger = logging.getLogger(__name__)
 @chat_bp.route("/api/chat", methods=["POST"])
 def chat():
-    data = request.get_json()
+    data = request.get_json() or {}
     message = data.get("message")
-    agent_type = data.get("agent_type", "router")
+    agent_type = data.get("agent", "router")
 
     if not message:
         return jsonify({"error": "Message is required"}), 400
