@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import skills from "../data/skills.json";
 import blogs from "../data/blogs.json";
-import { motion, useReducedMotion } from 'framer-motion'
-
+import { motion, useReducedMotion } from 'framer-motion';
+import { useLocation } from "react-router-dom";
 /**
  * Motion variants
  */
@@ -27,10 +27,12 @@ const skillItemVariants = {
 };
 
 export default function Home() {
+  const location = useLocation()
   // Respect user's reduced motion setting (accessibility)
   const reduceMotion = useReducedMotion();
   return (
     <>
+    <div className={location.key || location.pathname}>
       {/* HERO */}
       <section className="flex flex-col-reverse md:flex-row items-center justify-between py-16">
         {/* Left - text */}
@@ -188,6 +190,7 @@ export default function Home() {
           Let’s Work Together
         </Link>
       </motion.section>
+    </div>
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import projects from "../data/projects.json";
 import { api } from "../api/client";
+import { useLocation } from 'react-router-dom'
 
 const gridVariants = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 const cardVariants = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } } };
@@ -17,6 +18,7 @@ type ProposalForm = {
 };
 
 export default function Projects() {
+  const location = useLocation();
   // ---- Showcase grid above (unchanged) ----
   // You can keep your existing grid from earlier steps
   const [form, setForm] = useState<ProposalForm>({
@@ -80,7 +82,7 @@ export default function Projects() {
   }
 
   return (
-    <div className="space-y-16 py-16">
+    <div key={location.key || location.pathname} className="space-y-16 py-16">
       {/* PROJECT GRID (keep from previous step) */}
       <section>
         <h1 className="text-3xl font-bold text-center mb-12">My Projects</h1>
