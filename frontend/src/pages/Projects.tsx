@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import projects from "../data/projects.json";
 import { api } from "../api/client";
 import { useLocation } from 'react-router-dom'
 
 const gridVariants = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
-const cardVariants = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } } };
+const cardVariants = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: easeOut } } };
 
 type ProposalForm = {
   name: string;

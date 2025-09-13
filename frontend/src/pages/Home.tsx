@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 import skills from "../data/skills.json";
 import blogs from "../data/blogs.json";
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, easeOut } from 'framer-motion';
 import { useLocation } from "react-router-dom";
 /**
  * Motion variants
  */
 const heroTextVariants = {
   hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } }
 };
 
 const heroImageVariants = {
   hidden: { opacity: 0, scale: 0.98 },
-  show: { opacity: 1, scale: 1, transition: { delay: 0.08, duration: 0.6, ease: "easeOut" } }
+  show: { opacity: 1, scale: 1, transition: { delay: 0.08, duration: 0.6, ease: easeOut } }
 };
 
 const skillsListVariants = {
@@ -32,7 +32,7 @@ export default function Home() {
   const reduceMotion = useReducedMotion();
   return (
     <>
-    <div className={location.key || location.pathname}>
+    <div key={location.key || location.pathname}>
       {/* HERO */}
       <section className="flex flex-col-reverse md:flex-row items-center justify-between py-16">
         {/* Left - text */}

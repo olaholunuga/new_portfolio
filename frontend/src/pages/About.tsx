@@ -1,17 +1,19 @@
 // src/pages/About.tsx
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import courses from "../data/courses.json";
+import { useLocation } from "react-router-dom"
 
 const timelineVariants = {
   hidden: { opacity: 0, x: -40 },
   show: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.15, duration: 0.45, ease: "easeOut" }
+    transition: { delay: i * 0.15, duration: 0.45, ease: easeOut }
   })
 };
 
 export default function About() {
+  const location = useLocation();
   const jobs = [
     {
       role: "Frontend Developer",
@@ -36,7 +38,7 @@ export default function About() {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto py-16 space-y-16">
+    <div key={location.key || location.pathname} className="max-w-3xl mx-auto py-16 space-y-16">
       {/* ABOUT INTRO */}
       {/* About Me */}
       <div className="text-center md:text-left space-y-6">
