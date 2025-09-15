@@ -1,26 +1,14 @@
 [
   {
-    "title": "Machine Learning by Andrew Ng",
-    "provider": "Stanford University",
-    "year": "2020",
-    "certificateUrl": "https://coursera.org/certificate/example-ml"
+    "title": "IBM DevOps and Software Engineering Professional Certificate",
+    "provider": "Coursera",
+    "year": "2025 - Present",
+    "certificateUrl": "https://www.coursera.org/professional-certificates/devops-and-software-engineering"
   },
   {
-    "title": "Deep Learning Specialization",
-    "provider": "deeplearning.ai",
-    "year": "2021",
-    "certificateUrl": "https://coursera.org/certificate/example-dl"
-  },
-  {
-    "title": "Python for Everybody",
-    "provider": "University of Michigan",
-    "year": "2021",
-    "certificateUrl": "https://coursera.org/certificate/example-py"
-  },
-  {
-    "title": "AI for Everyone",
-    "provider": "deeplearning.ai",
-    "year": "2022",
-    "certificateUrl": "https://coursera.org/certificate/example-ai"
+    "title": "ALX Software Engineering Programme with specialization in Back-end",
+    "provider": "ALX",
+    "year": "2023",
+    "certificateUrl": "https://savanna.alxafrica.com/certificates/NhCPHymG7p"
   }
 ]

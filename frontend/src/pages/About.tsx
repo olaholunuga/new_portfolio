@@ -16,24 +16,18 @@ export default function About() {
   const location = useLocation();
   const jobs = [
     {
-      role: "Frontend Developer",
-      company: "Tech Corp",
-      year: "2022 - Present",
-      description: "Building modern React-based web apps."
-    },
-    {
-      role: "Intern Developer",
-      company: "Startup Inc.",
-      year: "2021 - 2022",
-      description: "Worked on internal tools and assisted senior devs."
+      role: "Technical Lead",
+      Institution: "RAIN-INN, OOU",
+      year: "2025 - Present",
+      description: "Building student communities around Tech and what they love most on campus."
     }
   ];
 
   const education = [
     {
-      degree: "BSc Computer Science",
-      school: "University of Lagos",
-      year: "2017 - 2021"
+      degree: "B.ENGR Computer Engineering",
+      school: "Olabisi Onabanjo University",
+      year: "2022 - Present"
     }
   ];
 
@@ -96,7 +90,7 @@ export default function About() {
               <span className="absolute -left-[14px] top-2 w-3 h-3 bg-sky-500 rounded-full border-2 border-white dark:border-slate-900" />
               <h3 className="font-semibold">{job.role}</h3>
               <p className="text-sm text-slate-500">
-                {job.company} • {job.year}
+                {job.Institution} • {job.year}
               </p>
               <p className="text-slate-600 dark:text-slate-400 text-sm">
                 {job.description}
