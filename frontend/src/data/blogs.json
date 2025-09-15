@@ -2,19 +2,19 @@
   {
     "title": "Getting Started with AI Agents",
     "excerpt": "Learn how I experimented with AI-powered assistants for my projects...",
-    "image": "/images/blog1.jpg",
-    "link": "https://yourblog.com/post1"
+    "image": "/images/ai_agents.JPG",
+    "link": "#"
   },
   {
     "title": "Why I Love TypeScript",
     "excerpt": "Here’s why TypeScript has improved my productivity and code quality...",
-    "image": "/images/blog2.jpg",
-    "link": "https://yourblog.com/post2"
+    "image": "/images/typescript.JPG",
+    "link": "#"
   },
   {
     "title": "Flask vs FastAPI",
     "excerpt": "My thoughts on when to use Flask vs FastAPI for backend projects...",
-    "image": "/images/blog3.jpg",
-    "link": "https://yourblog.com/post3"
+    "image": "/images/flask_vs_fastapi.JPG",
+    "link": "#"
   }
 ]
