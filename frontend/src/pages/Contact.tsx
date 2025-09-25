@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { FileText } from "lucide-react";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -163,6 +164,7 @@ export default function Contact() {
           download
           className="inline-block px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-lg hover:bg-sky-500 hover:text-white transition"
         >
+          <FileText className="w-4 h-4" />
           Download My Resume
         </a>
       </motion.section>
