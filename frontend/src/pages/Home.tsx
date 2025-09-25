@@ -85,7 +85,7 @@ export default function Home() {
           variants={heroImageVariants}
         >
           <img
-            src="/profile.png"
+            src="/profile.jpg"
             alt="Portrait of Olaoluwa Olunuga"
             className="w-64 h-64 object-cover rounded-full shadow-lg border-4 border-sky-400"
           />
