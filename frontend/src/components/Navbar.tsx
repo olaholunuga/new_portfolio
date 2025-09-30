@@ -18,7 +18,7 @@ export default function Navbar() {
           <Link to="/projects" className="hover:text-sky-400 transition">Projects</Link>
           <Link to="/contact" className="hover:text-sky-400 transition">Contact</Link>
           <a
-            href="https://myblogsite.com"
+            href="https://olah-blog-frontend-6wnz.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-sky-400 hover:bg-sky-500 text-white px-4 py-2 rounded-md transition"
