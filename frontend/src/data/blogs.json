@@ -1,20 +1,8 @@
 [
   {
-    "title": "Getting Started with AI Agents",
-    "excerpt": "Learn how I experimented with AI-powered assistants for my projects...",
-    "image": "/images/ai_agents.JPG",
-    "link": "#"
-  },
-  {
-    "title": "Why I Love TypeScript",
-    "excerpt": "Here’s why TypeScript has improved my productivity and code quality...",
-    "image": "/images/typescript.JPG",
-    "link": "#"
-  },
-  {
-    "title": "Flask vs FastAPI",
-    "excerpt": "My thoughts on when to use Flask vs FastAPI for backend projects...",
-    "image": "/images/flask_vs_fastapi.JPG",
-    "link": "#"
+    "title": "Solving Dynamic Programming Problems with Memoization",
+    "excerpt": "Dynamic Programming (DP) is a key concept every aspiring software engineer should understand",
+    "image": "/images/dynamic_programming_memoization.png",
+    "link": "https://olah-blog-frontend-6wnz.vercel.app/posts/solving-dynamic-programming-problems-with-memoization"
   }
 ]
